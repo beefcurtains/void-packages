@@ -1,0 +1,36 @@
+# Template file for 'godot'
+pkgname=godot
+version=1.1
+revision=1
+wrksrc="${pkgname}-${version}-stable"
+build_style=scons
+hostmakedepends="scons pkg-config"
+makedepends="
+ alsa-lib-devel freetype-devel glu-devel libXcursor-devel
+ libXinerama-devel libXrender-devel libressl-devel pulseaudio-devel"
+short_desc="Godot Game Engine"
+maintainer="beefcurtains <beefcurtains@users.noreply.github.com>"
+license="Zlib"
+homepage="http://www.godotengine.org/"
+distfiles="https://github.com/okamstudio/${pkgname}/archive/${version}-stable.tar.gz"
+checksum=64281f4fa485cac13ff5b0bc00449a62b19198fc072260d3fb01aa5aad2be8a5
+
+do_build() {
+	# Godot contains private copies of libraries
+	# that already have  been packaged elsewhere.
+	scons ${makejobs} target=release_debug p=x11 \
+	theora=no speex=no webp=no \
+	builtin_zlib=no openssl=yes \
+	CC="${CC}" CXX="${CXX}" CFLAGS="${CFLAGS}" \
+	CCFLAGS="${CXXFLAGS}" LINKFLAGS="${LDFLAGS}"
+}
+
+do_install() {
+	vlicense LICENSE.md
+	local _file_prefix=bin/godot.x11.opt.tools.
+	if [ -e "${_file_prefix}64" ]; then
+		vbin "${_file_prefix}64" ${pkgname}
+	else
+		vbin "${_file_prefix}32" ${pkgname}
+	fi
+}
