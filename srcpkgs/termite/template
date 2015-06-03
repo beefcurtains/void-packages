@@ -1,0 +1,29 @@
+# Template file for 'termite'
+pkgname=termite
+version=10
+revision=1
+_util_commit=62faf9e46b8c4ab213ac42aaf6343dea9e2dfc1e
+wrksrc=sources
+create_wrksrc=yes
+build_wrksrc=${pkgname}-${version}
+build_style=gnu-makefile
+make_build_args="VERSION=${version}"
+hostmakedepends="pkg-config"
+makedepends="vte3-devel"
+short_desc="Keyboard-centric VTE-based terminal"
+maintainer="beefcurtains <beefcurtains@users.noreply.github.com>"
+license="GPL-2"
+homepage="https://github.com/thestinger/termite"
+distfiles="
+ ${homepage}/archive/v${version}.tar.gz
+ ${homepage%/*}/util/archive/${_util_commit}.tar.gz
+"
+checksum="
+ c15e23c41cbf0b2d8c1fa3aa6fb6618212af9a86fc466a91d0bb058a9326e4ef
+ c62be725845c52751d9bd7a8defaff9ad1b29c473c0c279ad64f2cc59befaf2b
+"
+
+post_extract() {
+	rmdir ${wrksrc}/${build_wrksrc}/util
+	mv ${wrksrc}/util-${_util_commit} !*
+}
