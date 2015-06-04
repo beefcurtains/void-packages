@@ -1,9 +1,9 @@
 # Template build file for 'guile'.
 pkgname=guile
 version=2.0.11
-revision=2
+revision=3
 build_style=gnu-configure
-configure_args="--disable-static --disable-error-on-warning"
+configure_args="--disable-static --disable-error-on-warning --without-threads"
 hostmakedepends="pkg-config"
 makedepends="gmp-devel libltdl-devel libunistring-devel libffi-devel gc-devel ncurses-devel"
 short_desc="A portable, embeddable Scheme implementation written in C"
