@@ -1,0 +1,19 @@
+# Template file for 'frankenwm'
+pkgname=frankenwm
+version=1.0.1
+revision=1
+wrksrc="FrankenWM-${version}"
+hostmakedepends="pkg-config"
+makedepends="libxcb-devel xcb-util-devel xcb-util-wm-devel xcb-util-keysyms-devel"
+build_style=gnu-makefile
+short_desc="XCB dynamic tiling WM"
+maintainer="Ypnose <linuxienATlegtuxDOTorg>"
+license="MIT"
+homepage="https://github.com/sulami/FrankenWM"
+replaces="frankenwm-git>=0"
+distfiles="${homepage}/archive/${version}.tar.gz"
+checksum=074538b165645689016110653eadfd6f363b9ff2dd914f9a0362571049f80544
+
+post_install() {
+	vlicense LICENSE
+}
