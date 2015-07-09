@@ -1,7 +1,7 @@
 # Template build file for 'gdk-pixbuf'.
 pkgname=gdk-pixbuf
 version=2.31.4
-revision=1
+revision=2
 build_style=gnu-configure
 configure_args="$(vopt_enable gir introspection) --without-libjasper
  --with-included-loaders=png --with-x11 gio_can_sniff=yes"
@@ -42,8 +42,6 @@ gdk-pixbuf-devel_package() {
 		vmove "usr/lib/*.so"
 		vmove usr/lib/pkgconfig
 		vmove usr/include
-		vmove "usr/bin/*csource*"
-		vmove "usr/share/man/man1/*csource*"
 		if [ "$build_option_gir" ]; then
 			vmove usr/share/gir-1.0
 		fi
