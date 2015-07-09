@@ -1,0 +1,2 @@
+site="https://api.github.com/repos/${pkgname}/${pkgname}/contents/${wrksrc}"
+pkgname="${wrksrc}"

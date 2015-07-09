@@ -1,0 +1,24 @@
+# Template file for 'xbmc-adult'
+pkgname=xbmc-adult
+version=1.0.6
+revision=1
+wrksrc=repository.xbmcadult
+noarch=yes
+hostmakedepends="unzip"
+depends="kodi"
+short_desc="Kodi repository for add-ons that access adult content"
+maintainer="beefcurtains <beefcurtains@voidlinux.eu>"
+license="GPL-3"
+homepage="https://github.com/${pkgname}/${pkgname}"
+distfiles="${homepage}/raw/ghmaster/${wrksrc}/${wrksrc}-${version}.zip"
+checksum=d4b970320898a34db909f0987eabd00deaf0384b88d8a6606e16d3c24fed1a17
+
+do_install() {
+	local _addonname _file
+	_addonname=$(basename $wrksrc)
+
+	# Permissions aren't neccesarily set correctly in the zip
+	for _file in $( echo * ); do
+		vinstall $_file 644 usr/share/${depends}/addons/${_addonname}
+	done
+}
