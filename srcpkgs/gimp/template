@@ -1,12 +1,13 @@
 # Template build file for 'gimp'.
 pkgname=gimp
 version=2.8.14
-revision=3
+revision=4
 lib32disabled=yes
 build_style=gnu-configure
+build_options="python"
 configure_args="--without-aa --without-gvfs --enable-gimp-console
- --enable-python --with-gif-compression=lzw --with-libcurl --enable-mp"
-hostmakedepends="pkg-config intltool"
+ $(vopt_enable python) --with-gif-compression=lzw --with-libcurl --enable-mp"
+hostmakedepends="pkg-config intltool gdk-pixbuf"
 makedepends="libpng-devel gtk+-devel lcms2-devel
  alsa-lib-devel dbus-glib-devel libXmu-devel libXcursor-devel
  libexif-devel libsoup-devel webkitgtk2-devel libwmf-devel librsvg-devel
@@ -27,6 +28,10 @@ homepage="http://www.gimp.org"
 license="GPL-3"
 distfiles="http://download.gimp.org/pub/gimp/v${version%.*}/gimp-${version}.tar.bz2"
 checksum=d82a958641c9c752d68e35f65840925c08e314cea90222ad845892a40e05b22d
+
+if [ -z "$CROSS_BUILD" ]; then
+	build_options_default="python"
+fi
 
 libgimp_package() {
 	replaces="gimp<2.8.10_3"
