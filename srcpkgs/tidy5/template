@@ -3,7 +3,7 @@
 # "HTML Tidy" and "Tidy HTML5". Binaries are tidy5.
 pkgname=tidy5
 _reponame=tidy-html5
-version=4.9.36
+version=5.1.7
 revision=1
 wrksrc=${_reponame}-${version}
 build_style=cmake
@@ -12,9 +12,9 @@ hostmakedepends="cmake libxslt"
 short_desc="HTML Tidy with HTML5 support"
 maintainer="beefcurtains <beefcurtains@voidlinux.eu>"
 license="W3C"
-homepage="http://www.htacg.org/${_reponame}/"
+homepage="http://www.htacg.org/tidy-html5/"
 distfiles="https://github.com/htacg/${_reponame}/archive/${version}.tar.gz"
-checksum=687ae85d52e9f368b3d74031b13fa4f346f77c1c7a50e6507a1db3792778d522
+checksum=6e4c51a2393298a3b233a02ec262c818da2aa335c3c55a8e6a1d66a8970e7733
 
 pre_configure() {
 	# the $(man) target requires tidy5 to run on the host
