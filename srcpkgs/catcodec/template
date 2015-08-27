@@ -1,0 +1,15 @@
+# Template file for 'catcodec'
+pkgname=catcodec
+version=1.0.5
+revision=1
+build_style=gnu-makefile
+short_desc="Encoding and decoding of \"cat\" files"
+maintainer="beefcurtains <beefcurtains@voidlinux.eu>"
+license="GPL-2"
+homepage="http://www.openttd.org/en/download-catcodec"
+distfiles="http://binaries.openttd.org/extra/${pkgname}/${version}/${pkgname}-${version}-source.tar.xz"
+checksum=47ff4e6d663e19d529960c76f1e1bda5fe4cad97e2628381ec3a894ba260e0e1
+
+post_install() {
+	vbin ${pkgname}
+}
